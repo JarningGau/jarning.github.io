@@ -114,10 +114,13 @@
 <meta property="og:site_name" content="Dishes of Genomics">
 <meta property="og:description" content="应用场景 数据  123456789101112data &amp;lt;- data.frame(x=1:5, y=3:7)data$z=sin(data$x+data$y) data$a=sin(data$x*data$y)data$b=cos(data$x+data$y)data$d=cos(data$x*data$y)data  x y          z          a">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-09T11:35:13.920Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/JarningGau/blog_images/master/20190609/QQ图片20190609202013.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/JarningGau/blog_images/master/20190609/QQ图片20190609202130.png">
+<meta property="og:updated_time" content="2019-06-09T12:24:37.298Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R变量名称和字符串的转换">
 <meta name="twitter:description" content="应用场景 数据  123456789101112data &amp;lt;- data.frame(x=1:5, y=3:7)data$z=sin(data$x+data$y) data$a=sin(data$x*data$y)data$b=cos(data$x+data$y)data$d=cos(data$x*data$y)data  x y          z          a">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/JarningGau/blog_images/master/20190609/QQ图片20190609202013.png">
 
 
 
@@ -436,14 +439,23 @@
 <ul>
 <li>需求：批量画散点图</li>
 </ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">col_names &lt;- colnames(data)</div><div class="line">plot_list &lt;- lapply(<span class="number">3</span>:<span class="number">6</span>, <span class="keyword">function</span>(x) &#123;</div><div class="line">    ggplot(data=data, aes(x=x, y=y, color=col_names[x])) + geom_point() + ggtitle(col_names[x])</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">library</span>(ggplot2)</div><div class="line">col_names &lt;- colnames(data)</div><div class="line">plot_list &lt;- lapply(<span class="number">3</span>:<span class="number">6</span>, <span class="keyword">function</span>(xx) &#123;</div><div class="line">    ggplot(data=data, aes(x=x, y=y, color=col_names[xx])) + geom_point() + ggtitle(col_names[xx])</div><div class="line">&#125;)</div><div class="line">cowplot::plot_grid(plotlist = plot_list, ncol = <span class="number">2</span>)</div></pre></td></tr></table></figure>
 <ul>
-<li>这样其实是不行的，因为无法传递字符串给color</li>
+<li>这样其实是不行的，我们将字符串传给color，color不会读取data中的数据，而是把col_names[xx]当做一个字符串来处理。</li>
 </ul>
 <h2 id="get"><a href="#get" class="headerlink" title="get"></a>get</h2><ul>
 <li>解决方案</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">col_names &lt;- colnames(data)[3:length(col_names)]</div><div class="line">plot_list &lt;- lapply(col_names, function(x) &#123;</div><div class="line">    ggplot(data=data, aes(x=x, y=y, color=x)) + geom_point() + ggtitle(x)</div><div class="line">&#125;)</div><div class="line">cowplot::plot_grid(plotlist = plot_list, ncol = 2)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">library(ggplot2)</div><div class="line">col_names &lt;- colnames(data)[3:6]</div><div class="line">plot_list &lt;- lapply(col_names, function(xx) &#123;</div><div class="line">    ggplot(data=data, aes(x=x, y=y, color=get(xx))) + geom_point() + ggtitle(xx) + </div><div class="line">    theme(plot.title = element_text(hjust = 0.5))</div><div class="line">&#125;)</div><div class="line">cowplot::plot_grid(plotlist = plot_list, ncol = 2)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>Wrong way</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/JarningGau/blog_images/master/20190609/QQ图片20190609202013.png" alt=""></p>
+<ul>
+<li>Correct way</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/JarningGau/blog_images/master/20190609/QQ图片20190609202130.png" alt=""></p>
 <h2 id="assign"><a href="#assign" class="headerlink" title="assign"></a>assign</h2><p>assign是get的逆运算，比如，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">assign(&quot;a&quot;, 1) </div><div class="line"># 等价于</div><div class="line">a &lt;- 1</div></pre></td></tr></table></figure>
 <p>目前还没有遇到需要assign函数的场景，忘了它吧。</p>
