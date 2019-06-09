@@ -321,7 +321,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/04/hexo-Github博客运维/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/09/R保存图片/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jarning">
@@ -340,7 +340,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/04/hexo-Github博客运维/" itemprop="url">hexo+Github博客运维</a></h1>
+                <a class="post-title-link" href="/2019/06/09/R保存图片/" itemprop="url">R保存图片</a></h1>
         
 
         <div class="post-meta">
@@ -352,8 +352,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-04T21:26:34+08:00">
-                2017-09-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-09T16:10:46+08:00">
+                2019-06-09
               </time>
             
 
@@ -375,8 +375,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/blog-management/" itemprop="url" rel="index">
-                    <span itemprop="name">blog-management</span>
+                  <a href="/categories/搬砖随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">搬砖随笔</span>
                   </a>
                 </span>
 
@@ -392,7 +392,7 @@
 
           
           
-             <span id="/2017/09/04/hexo-Github博客运维/" class="leancloud_visitors" data-flag-title="hexo+Github博客运维">
+             <span id="/2019/06/09/R保存图片/" class="leancloud_visitors" data-flag-title="R保存图片">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -424,11 +424,1473 @@
 
       
         
-          <h2 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new title</div></pre></td></tr></table></figure>
-<p>&ensp;&ensp;hexo会生成 <code>./source/_posts/demo.md</code><br>&ensp;&ensp;打开该文件，我们会发现hexo为我们自动生成了文章的标题和创建时间，另外可以自己添加标签和分类</p>
+          <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>通常我在数据分析的时候，使用Rstudio+Rmarkdown可以实时对数据可视化。一旦一块数据分析的代码成熟后，我会写成pipeline，但是仍然需要导出中间结果的可视化结果，以期对数据进行质控。我对图片质量的要求不高。因此直接采用<code>png</code>格式。</p>
+<p>文档太长可以不看。给个例子</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">png(filename = <span class="string">"demo.png"</span>, width = <span class="number">8</span>, height = <span class="number">12</span>, units = <span class="string">"in"</span>, res = <span class="number">300</span>)</div><div class="line"><span class="comment"># some plots</span></div><div class="line">dev.off()</div></pre></td></tr></table></figure>
+<p>这里采用<code>inches</code>作为单位，是为了和Rmarkdown统一。此外，如果使用这一单位，必须指定分辨率。一般300dpi即可。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/09/04/hexo-Github博客运维/#more" rel="contents">
+            <a class="btn" href="/2019/06/09/R保存图片/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/07/R变量名称和字符串的转换/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jarning">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dishes of Genomics">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/07/R变量名称和字符串的转换/" itemprop="url">R变量名称和字符串的转换</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T14:20:15+08:00">
+                2019-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/搬砖随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">搬砖随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/06/07/R变量名称和字符串的转换/" class="leancloud_visitors" data-flag-title="R变量名称和字符串的转换">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ul>
+<li>数据</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">data &lt;- data.frame(x=<span class="number">1</span>:<span class="number">5</span>, y=<span class="number">3</span>:<span class="number">7</span>)</div><div class="line">data$z=sin(data$x+data$y) </div><div class="line">data$a=sin(data$x*data$y)</div><div class="line">data$b=cos(data$x+data$y)</div><div class="line">data$d=cos(data$x*data$y)</div><div class="line">data</div><div class="line">  x y          z          a          b          d</div><div class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">3</span> -<span class="number">0.7568025</span>  <span class="number">0.1411200</span> -<span class="number">0.6536436</span> -<span class="number">0.9899925</span></div><div class="line"><span class="number">2</span> <span class="number">2</span> <span class="number">4</span> -<span class="number">0.2794155</span>  <span class="number">0.9893582</span>  <span class="number">0.9601703</span> -<span class="number">0.1455000</span></div><div class="line"><span class="number">3</span> <span class="number">3</span> <span class="number">5</span>  <span class="number">0.9893582</span>  <span class="number">0.6502878</span> -<span class="number">0.1455000</span> -<span class="number">0.7596879</span></div><div class="line"><span class="number">4</span> <span class="number">4</span> <span class="number">6</span> -<span class="number">0.5440211</span> -<span class="number">0.9055784</span> -<span class="number">0.8390715</span>  <span class="number">0.4241790</span></div><div class="line"><span class="number">5</span> <span class="number">5</span> <span class="number">7</span> -<span class="number">0.5365729</span> -<span class="number">0.4281827</span>  <span class="number">0.8438540</span> -<span class="number">0.9036922</span></div></pre></td></tr></table></figure>
+<ul>
+<li>需求：批量画散点图</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">col_names &lt;- colnames(data)</div><div class="line">plot_list &lt;- lapply(<span class="number">3</span>:<span class="number">6</span>, <span class="keyword">function</span>(x) &#123;</div><div class="line">    ggplot(data=data, aes(x=x, y=y, color=col_names[x])) + geom_point() + ggtitle(col_names[x])</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>这样其实是不行的，因为无法传递字符串给color</li>
+</ul>
+<h2 id="get"><a href="#get" class="headerlink" title="get"></a>get</h2><ul>
+<li>解决方案</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">col_names &lt;- colnames(data)[3:length(col_names)]</div><div class="line">plot_list &lt;- lapply(col_names, function(x) &#123;</div><div class="line">    ggplot(data=data, aes(x=x, y=y, color=x)) + geom_point() + ggtitle(x)</div><div class="line">&#125;)</div><div class="line">cowplot::plot_grid(plotlist = plot_list, ncol = 2)</div></pre></td></tr></table></figure>
+<h2 id="assign"><a href="#assign" class="headerlink" title="assign"></a>assign</h2><p>assign是get的逆运算，比如，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">assign(&quot;a&quot;, 1) </div><div class="line"># 等价于</div><div class="line">a &lt;- 1</div></pre></td></tr></table></figure>
+<p>目前还没有遇到需要assign函数的场景，忘了它吧。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://zhuanlan.zhihu.com/p/30383865" target="_blank" rel="external">R学习笔记（二）变量名称和字符串的转换</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/07/向R脚本传递参数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jarning">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dishes of Genomics">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/07/向R脚本传递参数/" itemprop="url">向R脚本传递参数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T10:47:46+08:00">
+                2019-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/搬砖随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">搬砖随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/06/07/向R脚本传递参数/" class="leancloud_visitors" data-flag-title="向R脚本传递参数">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="commandArgs"><a href="#commandArgs" class="headerlink" title="commandArgs"></a>commandArgs</h2><p>是R自带的参数传递函数，属于位置参数。</p>
+<ul>
+<li>一个例子</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch "test.R"</div></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">args = commandArgs(<span class="literal">TRUE</span>)</div><div class="line">print(args[<span class="number">1</span>])</div><div class="line">print(args[<span class="number">2</span>])</div><div class="line">print(args[<span class="number">3</span>])</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/07/向R脚本传递参数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/05/R语言删除列表元素/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jarning">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dishes of Genomics">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/05/R语言删除列表元素/" itemprop="url">R语言删除列表元素</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-05T15:10:45+08:00">
+                2019-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/搬砖随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">搬砖随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/06/05/R语言删除列表元素/" class="leancloud_visitors" data-flag-title="R语言删除列表元素">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">l &lt;- list(</div><div class="line">    <span class="string">"a"</span> = <span class="number">1</span>:<span class="number">6</span>,</div><div class="line">    <span class="string">"b"</span> = rep(<span class="string">"hello"</span>, <span class="number">6</span>)</div><div class="line">)</div><div class="line">l$a &lt;- <span class="literal">NULL</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/04/awk利用substr进行字符串截取/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jarning">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dishes of Genomics">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/04/awk利用substr进行字符串截取/" itemprop="url">awk利用substr进行字符串截取</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-04T23:14:02+08:00">
+                2019-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/搬砖随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">搬砖随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/06/04/awk利用substr进行字符串截取/" class="leancloud_visitors" data-flag-title="awk利用substr进行字符串截取">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://blog.csdn.net/praylucky/article/details/16987185" target="_blank" rel="external">https://blog.csdn.net/praylucky/article/details/16987185</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/04/将FPKM转换为TPM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jarning">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dishes of Genomics">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/04/将FPKM转换为TPM/" itemprop="url">将FPKM转换为TPM</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-04T16:01:17+08:00">
+                2019-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/搬砖随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">搬砖随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/06/04/将FPKM转换为TPM/" class="leancloud_visitors" data-flag-title="将FPKM转换为TPM">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>$$TPM_i = \frac{X_i}{l_i}\times\frac{1}{\sum{\frac{X_j}{l_j}}}\times10^6$$ </p>
+<p>$$FPKM_i = \frac{X_i}{l_i\times\frac{N}{10^6}} = \frac{X_i}{l_iN}\times10^6$$</p>
+<ul>
+<li><p>$X_i$：Fragments of gene i</p>
+</li>
+<li><p>$l_i$：Length of gene i (KB)</p>
+</li>
+<li><p>N：Total fragments</p>
+</li>
+</ul>
+<p>$TPM_i = (\frac{X_i}{l_iN})(\frac{1}{\sum{\frac{X_j}{l_jN}}})  = \frac{FPKM_i}{\sum{FPKM_j}}$ </p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># cols are samples and rows are gene features</span></div><div class="line">TPM_mtx &lt;- FPKM_mtx / rep(colSums(FPKM_mtx), each = nrow(FPKM_mtx)) * <span class="number">1e6</span></div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/04/将FPKM转换为TPM/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/04/data-frame删除指定列/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jarning">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dishes of Genomics">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/04/data-frame删除指定列/" itemprop="url">data.frame删除指定列</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-04T15:00:47+08:00">
+                2019-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/搬砖随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">搬砖随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/06/04/data-frame删除指定列/" class="leancloud_visitors" data-flag-title="data.frame删除指定列">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">df &lt;- data.frame(a1=c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>), a2=c(<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>))</div><div class="line"><span class="comment">#删除列a1</span></div><div class="line">subset(df, select = -c(a1)) <span class="comment">#按列名</span></div><div class="line">subset(df, select = -c(<span class="number">1</span>)) <span class="comment">#按列数</span></div><div class="line">df[, -c(<span class="number">1</span>)] <span class="comment">#按列数</span></div></pre></td></tr></table></figure>
+<p>值得注意的是，<code>subset</code>函数总会返回<code>data.frame</code>。推荐用<code>subset</code>。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/04/去除data-frame列名中的-X-字符/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jarning">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dishes of Genomics">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/04/去除data-frame列名中的-X-字符/" itemprop="url">去除data.frame列名中的'X'字符</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-04T12:36:41+08:00">
+                2019-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/搬砖随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">搬砖随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/06/04/去除data-frame列名中的-X-字符/" class="leancloud_visitors" data-flag-title="去除data.frame列名中的'X'字符">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>read.table</code>函数会自动在以数字开头的列名前加上一个’X’，可以通过如下方式去除</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">read.table(filename, sep = <span class="string">"\t"</span>, header = <span class="literal">T</span>, row.names = <span class="number">1</span>, check.names = <span class="literal">F</span>)</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/04/拯救那些被EXCEL篡改的基因名/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jarning">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dishes of Genomics">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/04/拯救那些被EXCEL篡改的基因名/" itemprop="url">拯救那些被EXCEL篡改的基因名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-04T11:49:22+08:00">
+                2019-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/搬砖随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">搬砖随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/06/04/拯救那些被EXCEL篡改的基因名/" class="leancloud_visitors" data-flag-title="拯救那些被EXCEL篡改的基因名">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>有时候在GEO下载发表的基因表达矩阵的时候，经常遇到如下的基因名被EXCEL自动篡改。这里介绍一个R包：<a href="https://waldronlab.io/HGNChelper/" target="_blank" rel="external">HGNChelper</a>，可以自动识别这些基因，并进行修正。</p>
+<table>
+<thead>
+<tr>
+<th>EXCEL ERROR</th>
+<th>Corrected Gene Symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1-Sep</td>
+<td>SEPT1</td>
+</tr>
+<tr>
+<td>10-Sep</td>
+<td>SEPT10</td>
+</tr>
+<tr>
+<td>11-Sep</td>
+<td>SEPT11</td>
+</tr>
+<tr>
+<td>12-Sep</td>
+<td>SEPT12</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/04/拯救那些被EXCEL篡改的基因名/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/24/SRA数据库解读/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jarning">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dishes of Genomics">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/24/SRA数据库解读/" itemprop="url">SRA数据库解读</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-24T12:54:44+08:00">
+                2019-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/公共数据挖掘/" itemprop="url" rel="index">
+                    <span itemprop="name">公共数据挖掘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/05/24/SRA数据库解读/" class="leancloud_visitors" data-flag-title="SRA数据库解读">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>目前，所有的测序数据都存储在国际核酸序列数据库联盟(INSDC)里，包括SRA，EBI，DDBJ。上传到任何一个数据库中的数据都会彼此共享。但是维护最好的当属SRA数据库。本文只涉及SRA数据库。以下是NCBI对SRA数据库的简介：</p>
+<blockquote>
+<p>The SRA is NIH’s primary archive of high-throughput sequencing data and is part of the International Nucleotide Sequence Database Collaboration (INSDC) that includes at the NCBI Sequence Read Archive (SRA), the European Bioinformatics Institute (EBI), and the DNA Database of Japan (DDBJ). Data submitted to any of the three organizations are shared among them.</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/24/SRA数据库解读/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -469,6 +1931,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -512,7 +1978,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -523,7 +1989,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -534,7 +2000,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

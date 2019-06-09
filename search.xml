@@ -1,6 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[R保存图片]]></title>
+    <url>%2F2019%2F06%2F09%2FR%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87%2F</url>
+    <content type="text"><![CDATA[应用场景通常我在数据分析的时候，使用Rstudio+Rmarkdown可以实时对数据可视化。一旦一块数据分析的代码成熟后，我会写成pipeline，但是仍然需要导出中间结果的可视化结果，以期对数据进行质控。我对图片质量的要求不高。因此直接采用png格式。 文档太长可以不看。给个例子 123png(filename = "demo.png", width = 8, height = 12, units = "in", res = 300)# some plotsdev.off() 这里采用inches作为单位，是为了和Rmarkdown统一。此外，如果使用这一单位，必须指定分辨率。一般300dpi即可。 相关R文档123456789101112131415161718192021bmp(filename = "Rplot%03d.bmp", width = 480, height = 480, units = "px", pointsize = 12, bg = "white", res = NA, ..., type = c("cairo", "Xlib", "quartz"), antialias)jpeg(filename = "Rplot%03d.jpeg", width = 480, height = 480, units = "px", pointsize = 12, quality = 75, bg = "white", res = NA, ..., type = c("cairo", "Xlib", "quartz"), antialias)png(filename = "Rplot%03d.png", width = 480, height = 480, units = "px", pointsize = 12, bg = "white", res = NA, ..., type = c("cairo", "cairo-png", "Xlib", "quartz"), antialias)tiff(filename = "Rplot%03d.tiff", width = 480, height = 480, units = "px", pointsize = 12, compression = c("none", "rle", "lzw", "jpeg", "zip", "lzw+p", "zip+p"), bg = "white", res = NA, ..., type = c("cairo", "Xlib", "quartz"), antialias) Arguments filename the name of the output file. The page number is substituted if a C integer format is included in the character string, as in the default. (The result must be less than PATH_MAX characters long, and may be truncated if not. See postscript for further details.) Tilde expansion is performed where supported by the platform. width the width of the device. height the height of the device. units The units in which height and width are given. Can be px(pixels, the default), in (inches), cm or mm. pointsize the default pointsize of plotted text, interpreted as big points (1/72 inch) at res ppi. bg the initial background colour: can be overridden by setting par(“bg”). quality the ‘quality’ of the JPEG image, as a percentage. Smaller values will give more compression but also more degradation of the image. compression the type of compression to be used. Ignored for type = &quot;quartz&quot;. res The nominal resolution in ppi which will be recorded in the bitmap file, if a positive integer. Also used for units other than the default, and to convert points to pixels. ... for type = &quot;Xlib&quot; only, additional arguments to the underlying X11 device such as fonts or family.For types &quot;cairo&quot; and &quot;quartz&quot;, the family argument can be supplied. See the ‘Cairo fonts’ section in the help for X11. type character string, one of &quot;Xlib&quot; or &quot;quartz&quot; (some macOS builds) or &quot;cairo&quot;. The latter will only be available if the system was compiled with support for cairo – otherwise &quot;Xlib&quot; will be used. The default is set by getOption(&quot;bitmapType&quot;) – the ‘out of the box’ default is &quot;quartz&quot; or &quot;cairo&quot; where available, otherwise &quot;Xlib&quot;. antialias for type = &quot;cairo&quot;, giving the type of anti-aliasing (if any) to be used for fonts and lines (but not fills). See X11. The default is set by X11.options. Also for type = &quot;quartz&quot;, where antialiasing is used unless antialias = &quot;none&quot;.]]></content>
+      <categories>
+        <category>搬砖随笔</category>
+      </categories>
+      <tags>
+        <tag>R</tag>
+        <tag>可视化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[R变量名称和字符串的转换]]></title>
+    <url>%2F2019%2F06%2F07%2FR%E5%8F%98%E9%87%8F%E5%90%8D%E7%A7%B0%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BD%AC%E6%8D%A2%2F</url>
+    <content type="text"><![CDATA[应用场景 数据 123456789101112data &lt;- data.frame(x=1:5, y=3:7)data$z=sin(data$x+data$y) data$a=sin(data$x*data$y)data$b=cos(data$x+data$y)data$d=cos(data$x*data$y)data x y z a b d1 1 3 -0.7568025 0.1411200 -0.6536436 -0.98999252 2 4 -0.2794155 0.9893582 0.9601703 -0.14550003 3 5 0.9893582 0.6502878 -0.1455000 -0.75968794 4 6 -0.5440211 -0.9055784 -0.8390715 0.42417905 5 7 -0.5365729 -0.4281827 0.8438540 -0.9036922 需求：批量画散点图 1234col_names &lt;- colnames(data)plot_list &lt;- lapply(3:6, function(x) &#123; ggplot(data=data, aes(x=x, y=y, color=col_names[x])) + geom_point() + ggtitle(col_names[x])&#125;) 这样其实是不行的，因为无法传递字符串给color get 解决方案 12345col_names &lt;- colnames(data)[3:length(col_names)]plot_list &lt;- lapply(col_names, function(x) &#123; ggplot(data=data, aes(x=x, y=y, color=x)) + geom_point() + ggtitle(x)&#125;)cowplot::plot_grid(plotlist = plot_list, ncol = 2) assignassign是get的逆运算，比如， 123assign(&quot;a&quot;, 1) # 等价于a &lt;- 1 目前还没有遇到需要assign函数的场景，忘了它吧。 ReferenceR学习笔记（二）变量名称和字符串的转换]]></content>
+      <categories>
+        <category>搬砖随笔</category>
+      </categories>
+      <tags>
+        <tag>R</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[向R脚本传递参数]]></title>
+    <url>%2F2019%2F06%2F07%2F%E5%90%91R%E8%84%9A%E6%9C%AC%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[commandArgs是R自带的参数传递函数，属于位置参数。 一个例子 1touch "test.R" 1234args = commandArgs(TRUE)print(args[1])print(args[2])print(args[3]) 1234Rscript test.R hello 123 world[1] "hello"[1] "123"[1] "world" 注意，cmmandArgs()如果不加参数TRUE， 123456789Args = commandArgs()cat("Args[1]=",Args[1],"\n")cat("Args[2]=",Args[1],"\n")cat("Args[3]=",Args[3],"\n")cat("Args[4]=",Args[4],"\n")cat("Args[5]=",Args[5],"\n")cat("Args[6]=",Args[6],"\n")cat("Args[7]=",Args[7],"\n")cat("Args[8]=",Args[8],"\n") 123456789Rscript test.R hello 123 worldArgs[1]= /usr/lib/R/bin/exec/RArgs[2]= /usr/lib/R/bin/exec/RArgs[3]= --no-restoreArgs[4]= --file=test.RArgs[5]= --argsArgs[6]= hello # 输入参数从这里开始Args[7]= 123Args[8]= world 实际上TRUE是传给trailingOnly的，官方文档里的解释：If TRUE, only arguments after --args are returned. getopt需要先安装getopt包 12getopt(spec = NULL, opt = commandArgs(TRUE), command = get_Rscript_filename(), usage = FALSE,debug = FALSE) spec：一个4-5列的矩阵，里面包括了参数信息，前四列是必须的，第五列可选。 第一列：参数的longname，多个字符。 第二列：参数的shortname，一个字符。 第三列：参数是必须的，还是可选的，数字：0代表不接参数 ；1代表必须有参数；2代表参数可选。 第四列：参数的类型。logical；integer；double；complex；character；numeric 第五列：注释信息，可选。 usage：默认为FALSE, 这时参数无实际意义，而是以用法的形式输出。 12345678910library(getopt)spec = matrix(c( 'verbose', 'v', 2, "integer", 'help' , 'h', 0, "logical", 'count' , 'c', 1, "integer", 'mean' , 'm', 1, "double"), byrow=TRUE, ncol=4)opt = getopt(spec)print(opt$count)print(opt$mean) 123Rscript test.R -c 12 -m 2[1] 12[1] 2 参考commandArgs https://blog.csdn.net/u011596455/article/details/79753788]]></content>
+      <categories>
+        <category>搬砖随笔</category>
+      </categories>
+      <tags>
+        <tag>R</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[R语言删除列表元素]]></title>
+    <url>%2F2019%2F06%2F05%2FR%E8%AF%AD%E8%A8%80%E5%88%A0%E9%99%A4%E5%88%97%E8%A1%A8%E5%85%83%E7%B4%A0%2F</url>
+    <content type="text"><![CDATA[12345l &lt;- list( "a" = 1:6, "b" = rep("hello", 6))l$a &lt;- NULL]]></content>
+      <categories>
+        <category>搬砖随笔</category>
+      </categories>
+      <tags>
+        <tag>R</tag>
+        <tag>R basic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[awk利用substr进行字符串截取]]></title>
+    <url>%2F2019%2F06%2F04%2Fawk%E5%88%A9%E7%94%A8substr%E8%BF%9B%E8%A1%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%88%AA%E5%8F%96%2F</url>
+    <content type="text"><![CDATA[https://blog.csdn.net/praylucky/article/details/16987185]]></content>
+      <categories>
+        <category>搬砖随笔</category>
+      </categories>
+      <tags>
+        <tag>Shell</tag>
+        <tag>Linux</tag>
+        <tag>awk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[将FPKM转换为TPM]]></title>
+    <url>%2F2019%2F06%2F04%2F%E5%B0%86FPKM%E8%BD%AC%E6%8D%A2%E4%B8%BATPM%2F</url>
+    <content type="text"><![CDATA[$$TPM_i = \frac{X_i}{l_i}\times\frac{1}{\sum{\frac{X_j}{l_j}}}\times10^6$$ $$FPKM_i = \frac{X_i}{l_i\times\frac{N}{10^6}} = \frac{X_i}{l_iN}\times10^6$$ $X_i$：Fragments of gene i $l_i$：Length of gene i (KB) N：Total fragments $TPM_i = (\frac{X_i}{l_iN})(\frac{1}{\sum{\frac{X_j}{l_jN}}}) = \frac{FPKM_i}{\sum{FPKM_j}}$ 12# cols are samples and rows are gene featuresTPM_mtx &lt;- FPKM_mtx / rep(colSums(FPKM_mtx), each = nrow(FPKM_mtx)) * 1e6 参考http://www.bio-info-trainee.com/2017.html]]></content>
+      <categories>
+        <category>搬砖随笔</category>
+      </categories>
+      <tags>
+        <tag>RNA-seq</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[data.frame删除指定列]]></title>
+    <url>%2F2019%2F06%2F04%2Fdata-frame%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E5%88%97%2F</url>
+    <content type="text"><![CDATA[12345df &lt;- data.frame(a1=c(1,2,3,4), a2=c(5,6,7,8))#删除列a1subset(df, select = -c(a1)) #按列名subset(df, select = -c(1)) #按列数df[, -c(1)] #按列数 值得注意的是，subset函数总会返回data.frame。推荐用subset。]]></content>
+      <categories>
+        <category>搬砖随笔</category>
+      </categories>
+      <tags>
+        <tag>R</tag>
+        <tag>R basic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[去除data.frame列名中的'X'字符]]></title>
+    <url>%2F2019%2F06%2F04%2F%E5%8E%BB%E9%99%A4data-frame%E5%88%97%E5%90%8D%E4%B8%AD%E7%9A%84-X-%E5%AD%97%E7%AC%A6%2F</url>
+    <content type="text"><![CDATA[read.table函数会自动在以数字开头的列名前加上一个’X’，可以通过如下方式去除 1read.table(filename, sep = "\t", header = T, row.names = 1, check.names = F)]]></content>
+      <categories>
+        <category>搬砖随笔</category>
+      </categories>
+      <tags>
+        <tag>R</tag>
+        <tag>R basic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[拯救那些被EXCEL篡改的基因名]]></title>
+    <url>%2F2019%2F06%2F04%2F%E6%8B%AF%E6%95%91%E9%82%A3%E4%BA%9B%E8%A2%ABEXCEL%E7%AF%A1%E6%94%B9%E7%9A%84%E5%9F%BA%E5%9B%A0%E5%90%8D%2F</url>
+    <content type="text"><![CDATA[有时候在GEO下载发表的基因表达矩阵的时候，经常遇到如下的基因名被EXCEL自动篡改。这里介绍一个R包：HGNChelper，可以自动识别这些基因，并进行修正。 EXCEL ERROR Corrected Gene Symbol 1-Sep SEPT1 10-Sep SEPT10 11-Sep SEPT11 12-Sep SEPT12 一个简单的例子1234library(HGNChelper)human = c("FN1", "tp53", "UNKNOWNGENE","7-Sep", "9/7", "1-Mar", "Oct4", "4-Oct", "OCT4-PG4", "C19ORF71", "C19orf71")checkGeneSymbols(human) 123456789101112Human gene symbols should be all upper-case except for the &apos;orf&apos; in open reading frames. The case of some letters was corrected.x contains non-approved gene symbols x Approved Suggested.Symbol1 FN1 TRUE FN12 tp53 FALSE TP533 UNKNOWNGENE FALSE &lt;NA&gt;4 7-Sep FALSE SEPT75 9/7 FALSE SEPT76 1-Mar FALSE MARC1 /// MARCH17 Oct4 FALSE POU5F18 4-Oct FALSE POU5F19 OCT4-PG4 FALSE POU5F1P410 C19ORF71 FALSE C19orf7111 C19orf71 TRUE C19orf71 checkGeneSymbols不光可以教程EXCEL造成的篡改，同样也可以将Alias转换成标准基因名。但是有一些错误是无法解决的，比如1-Mar这样的错误，可能会对应多个Gene Symbol。这样的数据只能舍弃了。 一个典型的应用场景12345678910111213141516171819library(HGNChelper)# expression_matrix_file是一个行为基因，列为样本的基因表达矩阵mtx &lt;- read.table(expression_matrix_file, sep="\t", header=T, row.names=1)dim(mtx)# check gene symtolt &lt;- checkGeneSymbols(rownames(mtx))table(t$Approved)table(is.na(t$Suggested.Symbol))# delete &lt;NA&gt; and duplicated Suggested.Symbolmtx$Suggested.Symbol &lt;- t$Suggested.Symbolmtx &lt;- mtx[!is.na(mtx$Suggested.Symbol), ]mtx &lt;- mtx[!duplicated(mtx$Suggested.Symbol), ]# delete multiple Suggested.Symbolmtx &lt;- mtx[!grepl("///", mtx$Suggested.Symbol), ]# reset rownamesrownames(mtx) &lt;- mtx$Suggested.Symbol# delete Suggested.Symbol columnsmtx &lt;- subset(mtx, select = -c(Suggested.Symbol))dim(mtx)]]></content>
+      <categories>
+        <category>搬砖随笔</category>
+      </categories>
+      <tags>
+        <tag>R</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SRA数据库解读]]></title>
+    <url>%2F2019%2F05%2F24%2FSRA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%A3%E8%AF%BB%2F</url>
+    <content type="text"><![CDATA[目前，所有的测序数据都存储在国际核酸序列数据库联盟(INSDC)里，包括SRA，EBI，DDBJ。上传到任何一个数据库中的数据都会彼此共享。但是维护最好的当属SRA数据库。本文只涉及SRA数据库。以下是NCBI对SRA数据库的简介： The SRA is NIH’s primary archive of high-throughput sequencing data and is part of the International Nucleotide Sequence Database Collaboration (INSDC) that includes at the NCBI Sequence Read Archive (SRA), the European Bioinformatics Institute (EBI), and the DNA Database of Japan (DDBJ). Data submitted to any of the three organizations are shared among them. 从GSE ID说起通常，我们读到一篇文章，想用一下里面的数据，我们能从文章中得到的信息一般是GSE ID，该ID和GEO数据库关联，一般直接google就能检索到GSE ID下的详细信息。 GEO Datasets有三个ID，分别是 GPL，Platform ID。这个ID记录了测序或芯片平台，对于芯片平台，其包含了探针-基因对应表。一个GPL ID对应一个平台。一个GPL ID对应多个GSM ID或GSE ID。这个ID由数据上传者提供。但是对应的记录应该由厂商提供。 GSM，Sample ID。这个ID记录了一个处于特定处理条件的样本以及对应的建库测序方法。一个GSM ID对应一个GPL ID，但是对应多个GSE ID。这个ID中的记录由数据上传者提供，包括样本处理方式，建库的方法，数据处理方式等。 GSE，Series ID。这个ID将所有关联的样本联系起来，形成一个有目的的研究。这个ID对应的记录由数据上传者提供，包括文章的摘要（如果发表有的话），整体实验设计思路等。 一篇文章内可能包含多个GSE ID。有一些是作者自己贡献的数据，有些是已经发表的数据。一般来讲，每个GSE ID记录提供了处理后的数据，可以直接用。但是通常，因为数据处理方法不一样，数据不好放在一起比较。所以我们希望得到原始数据。这个时候，就需要访问SRA数据库了。 SRA数据库每一个GSE ID都能对应到SRA数据库的SRP ID。在Relations term下面，直接给出了超链接。 点击链接进入SRA数据库，有时候一个Series下面有很多样本，不方便查看。我们可以使用SRA Run Selector浏览。 点击RunInfo Table可以获得每个样本的所有信息； 点击Accession List可以获得所有的SRR ID ，用prefetch就可以下载对应的.sra文件了 我把sratoolkit用python做了个简单的封装。可以直接通过这个脚本下载相应数据。 以上简单介绍了如何通过GSE ID下载对应的原始数据。下面简单介绍一下SRA数据库中几个常用的ID。 SRA，用户进行一次有效的数据上传就会产生一个SRA ID，通常我们不使用这个ID。 SRX，这是SRA数据库的最小记录单位。一个SRX编号对应一次实验。和GSM ID对应。 SRP，SRA study，和GSE ID对应。 SRR，这个ID对应真实的测序数据。每一个实验可能对应多个SRR ID，因为有时候测序仪RUN一次无法产生足够的数据，比如HiC数据。 下表时SRA数据库的官方解释。 Accession Prefix Accession Name Definition Example SRA SRA submission accession The submission accession represents a virtual container that holds the objects represented by the other five accessions and is used to track the submission in the archive. Since the SRA accession number is an artificial packaging construct, there is no example available since the SRA accession number has no specific response page SRP SRA study accession A Study is an object that contains the project metadata describing a sequencing study or project. Imported from BioProject. HTML SRX SRA experiment accession An Experiment is an object that contains the metadata describing the library, platform selection, and processing parameters involved in a particular sequencing experiment. HTML SRR SRA run accession A Run is an object that contains actual sequencing data for a particular sequencing experiment. Experiments may contain many Runs depending on the number of sequencing instrument runs that were needed. HTML SRS SRA sample accession A Sample is an object that contains the metadata describing the physical sample upon which a sequencing experiment was performed. Imported from BioSample. HTML SRZ SRA analysis accession An analysis is an object that contains a sequence data analysis BAM file and the metadata describing the sequence analysis. 【备注】 人的基因组数据通常是限制访问的，一般需要通过dbGap数据库来获取访问权限。 ReferenceAbout GEO DataSets GEO DataSets的数据组织形式 SRA Overview SRA Handbook]]></content>
+      <categories>
+        <category>公共数据挖掘</category>
+      </categories>
+      <tags>
+        <tag>公共数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[git常用命令——持续更新]]></title>
+    <url>%2F2019%2F05%2F21%2Fgit%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%2F</url>
+    <content type="text"><![CDATA[Git协议切换在远程仓库和本地之间，有两种通信协议：SSH和HTTPS 由https切换为SSH配置SSH密钥和git公钥首先在本地机器上要生成自己的SSH密钥 12cd ~/.sshssh-keygen -t rsa -C "XX@XX.mail" #随便输一个邮箱地址 随后程序会提示你输入文件名前缀，一路回车即可。系统默认的文件名前缀是id_sra 这一步完成后，你的目录下应该有以下文件 1id_rsa id_rsa.pub known_hosts 1cat id_sra.pub 打开github，setting=&gt;SSH and GPG keys=&gt;New SSH key title可以输一个有意义的名字，方便你识别本地机器。（因为我们可能会在多个本地机器上进行开发） 将id_sra.pub的文件内容复制粘贴到key中，点击Add SSH key即可 切换协议12345cd /path/repository# step1. 查看当前协议git remote -v # 以https开头# step2. 切换为SSH协议(切换为https协议反之即可)git remote set-url origin git@github.com:username/repository.git]]></content>
+      <categories>
+        <category>版本控制</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在服务器端部署Rstudio Server]]></title>
+    <url>%2F2019%2F05%2F11%2F%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%83%A8%E7%BD%B2Rstudio-Server%2F</url>
+    <content type="text"><![CDATA[服务器OS是Centos7，以root用户的身份进行更新 在centos上安装和配置RStudio Server检查服务器端R版本 R版本为R-3.2.2，太过老旧，进行升级。 首先修改yum源 (optional)123456789# 备份cd /etc/yum.repos.d/mv CentOS-Base.repo CentOS-Base.repo.backup# 修改yum源为USTC镜像，centos7wget -O CentOS-Base.repo https://lug.ustc.edu.cn/wiki/_export/code/mirrors/help/centos?codeblock=3# 运行yum makecache生成缓存yum makecache# 更新系统yum -y update 更新R12wget https://mirrors.njupt.edu.cn/epel/7/x86_64/Packages/r/R-3.5.2-2.el7.x86_64.rpmyum install R-3.5.2-2.el7.x86_64.rpm 安装RStudio12wget https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.1335-x86_64.rpmyum install rstudio-server-rhel-1.2.1335-x86_64.rpm RStudio默认的端口是8787，输入ip+端口号即可访问 创建用户首先创建用户组，然后创建用户。例如 123groupadd hadoopuseradd hadoop_usr -d $usr_dir -g hadooppasswd hadoop_usr 这样，我们就能以hadoop_usr用户登录了。 参考资料 Centos镜像使用帮助 RStudio下载页面 在Linux服务器部署RStudio Server]]></content>
+      <categories>
+        <category>工作环境</category>
+      </categories>
+      <tags>
+        <tag>R</tag>
+        <tag>Rstudio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Anaconda的安装和配置]]></title>
+    <url>%2F2019%2F04%2F26%2FAnaconda%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[Anaconda的安装anaconda的安装包可以在官网上选择对应版本下载，如果官网网速太慢，可以选择USTC镜像下载对应版本。 随后，将anaconda安装包（我这里用的是Anaconda2-5.1.0-Linux-x86_64.sh）放在对应服务器的任意目录下，授予其可执行权限并执行，进入安装界面： 1chmod +x ./Anaconda2-5.1.0-Linux-x86_64.sh &amp;&amp; ./Anaconda2-5.1.0-Linux-x86_64.sh 一开始会让你阅读license，直接一路回车。 问你是否同意license，当然是yes。 这一步在指定安装路径，一般默认路径就可以了，直接回车。 是否要将Anaconda安装路径写入环境变量？当然是yes。 至此，Anaconda已经安装完毕。这里问你是否还要安装Microsoft VSCode？虽然我并不懂这里为啥要装它，但是装了也无妨，输入yes。 Anaconda安装完毕！此时输入conda应该会看到conda的使用说明，显示命令没有找到，则退出命令行重新登录。 由于利用Anaconda安装软件的过程中，国外镜像会经常遇见网络问题，因此，添加Anaconda USTC源到channel。详见 https://mirrors.ustc.edu.cn/help/anaconda.html Conda的基本使用 查看本地包和搜索包 1234567891011121314151617181920212223242526conda list # 列出安装的软件包conda search &lt;package ambigious name&gt; # 当我们想安装某个包却不知道具体名字，可以用这个命令获取其完整名字以及各种版本号---例如： conda search numpy # *表示当前已经安装的包---------------------------------------------------------------------------------------Fetching package metadata ...............numpy 1.7.2 py27_blas_openblas_201 conda-forge [blas_openblas] 1.7.2 py27_blas_openblas_202 conda-forge [blas_openblas] 1.12.0 py36_0 defaults 1.12.0 py36_nomkl_0 defaults [nomkl] * 1.12.1 py27_0 defaults 1.12.1 py27_nomkl_0 defaults [nomkl] 1.13.1 py36_0 defaults 1.13.1 py36_nomkl_0 defaults [nomkl]numpy-indexed 0.3.2 py27_0 conda-forge 1.0.47 py35_0 conda-forge 1.0.47 py36_0 conda-forge numpy_groupies 0.9.6 py27_0 conda-forge 0.9.6 py35_0 conda-forge 0.9.6 py36_0 conda-forge numpy_sugar 1.0.6 py27_0 conda-forge 1.0.6 py34_0 conda-forge numpydoc 0.6.0 py27_0 conda-forge 0.6.0 py34_0 conda-forge xnumpy 0.0.1 py27_0 conda-forge --------------------------------------------------------------------------------------- 安装包 123conda install &lt;package name&gt; # 安装软件包conda install &lt;package name&gt;=&lt;version&gt; # 安装特定版本的软件包conda remove &lt;package name&gt; # 移除软件包 安装R 1234# 具体见下面conda install -c r r-essentials # 安装R,及80多个常用的数据分析包, 包括idplyr, shiny, ggplot2, tidyr, caret 和 nnet# 安装单个包conda install -c https://conda.binstar.org/bokeh ggplot 获取帮助 12conda -h # 查看conda可用的命令conda install -h #查看install子命令的帮助 Conda的channelConda默认的源访问速度有些慢，可以增加国内的源；另外还可以增加几个源，以便于安装更多的软件，尤其是bioconda安装生信类工具。conda-forge通道是Conda社区维护的包含很多不在默认通道里面的通用型软件。r通道是向后兼容性通道，尤其是使用R3.3.1版本时会用到。后加的通道优先级更高，因此一般用下面列出的顺序添加。 12345678910111213141516171819202122232425conda config --add channels conda-forge # Lowest priorityconda config --add channels r # Optionalconda config --add channels defaultsconda config --add channels bioconda conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/msys2/conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/ # Anocanda科大镜像conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/ conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/menpo/conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/bioconda/ # 科大通道, 最高优先级conda config --set show_channel_urls yes# 显示已有的通道conda config --get channels-----------------------------------------------------------------------------------------add channels 'defaults' # lowest priority--add channels 'https://mirrors.ustc.edu.cn/anaconda/pkgs/free/'--add channels 'https://mirrors.ustc.edu.cn/anaconda/pkgs/main/'--add channels 'https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/'--add channels 'https://mirrors.ustc.edu.cn/anaconda/cloud/msys2/'--add channels 'https://mirrors.ustc.edu.cn/anaconda/cloud/bioconda/'--add channels 'https://mirrors.ustc.edu.cn/anaconda/cloud/menpo/' # highest priority---------------------------------------------------------------------------------------# 移除冗余的通道(示例)conda config --remove channels 'https://mirrors.ustc.edu.cn/anaconda/pkgs/free/' conda通道的配置文件一般在~/.condarc里面，内容如下。全局控制conda的安装在conda_path/.condarc，具体操作见https://conda.io/docs/user-guide/configuration/admin-multi-user-install.html 【补充】 最近Anaconda清华和科大的镜像都挂了，改用腾讯的镜像 123456789conda config --add channels https://mirrors.cloud.tencent.com/anaconda/pkgs/free/conda config --add channels https://mirrors.cloud.tencent.com/anaconda/cloud/bioconda/conda config --add channels https://mirrors.cloud.tencent.com/anaconda/cloud/msys2/conda config --add channels https://mirrors.cloud.tencent.com/anaconda/cloud/menpo/conda config --add channels https://mirrors.cloud.tencent.com/anaconda/cloud/peterjc123/conda config --add channels https://mirrors.cloud.tencent.com/anaconda/pkgs/main/conda config --add channels https://mirrors.cloud.tencent.com/anaconda/cloud/conda-forge/conda config --add channels https://mirrors.cloud.tencent.com/anaconda/cloud/pytorch/conda config --set show_channel_urls yes 创建不同的软件运行环境这是Conda最有特色的地方，可以通过创建不同的环境，同时运行不同软件的多个版本。 新创建的软件环境的目录为anaconda_path/envs/enrironment_name 新建环境 123456789101112131415161718192021222324conda create -n &lt;env_name&gt; python=&lt;version&gt; # 指定python版本号是可选的，不指定的话，会安装到默认的python版本号下，即在命令行中输入python所进入的那个版本conda create -n bsc_bioinfo # 例如，新建一个叫bsc_bioinfo的环境，用户安装生信分析所需要的软件---------------------------------------------------------------------------------------Solving environment: done==&gt; WARNING: A newer version of conda exists. &lt;== current version: 4.4.10 latest version: 4.5.0Please update conda by running $ conda update -n base conda## Package Plan ## environment location: /root/anaconda2/envs/bsc_bioinfoProceed ([y]/n)?---------------------------------------------------------------------------------------# 输入 y 查看所有环境 12345678conda env list # *是当前环境## 注意，尽量不要把各种包都一块安装到base环境下。---------------------------------------------------------------------------------------# conda environments:#base * /root/anaconda2bsc_bioinfo /root/anaconda2/envs/bsc_bioinfo--------------------------------------------------------------------------------------- 指定环境安装包 1conda install -n &lt;env_name&gt; -c &lt;channel&gt; &lt;packange_name&gt; # -n和-c为可选参数，不指定-n则安装在当前环境中，不指定-c则会按优先级依次搜索包 进入新的环境 1source activate bsc_bioinfo 退出新的环境 1source deactivate Conda配置R 在添加了不同的源之后，有些源更新快，有些更新慢，经常会碰到版本不一的问题。而且软件版本的优先级，低于源的优先级。保险期间，先做下搜索，获得合适的版本号，然后再选择安装。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152conda search r-essentials---------------------------------------------------------------------------------------Loading channels: doneName Version Build Channelr-essentials 1.0 r3.2.1_0 defaultsr-essentials 1.0 r3.2.1_0 rr-essentials 1.0 r3.2.1_0a defaultsr-essentials 1.0 r3.2.1_0a rr-essentials 1.1 r3.2.1_0 defaultsr-essentials 1.1 r3.2.1_0 rr-essentials 1.1 r3.2.1_0a defaultsr-essentials 1.1 r3.2.1_0a rr-essentials 1.1 r3.2.2_0 defaultsr-essentials 1.1 r3.2.2_0 rr-essentials 1.1 r3.2.2_0a defaultsr-essentials 1.1 r3.2.2_0a rr-essentials 1.1 r3.2.2_1 defaultsr-essentials 1.1 r3.2.2_1 rr-essentials 1.1 r3.2.2_1a defaultsr-essentials 1.1 r3.2.2_1a rr-essentials 1.4 0 defaultsr-essentials 1.4 0 rr-essentials 1.4.1 r3.3.1_0 defaultsr-essentials 1.4.1 r3.3.1_0 rr-essentials 1.4.2 0 defaultsr-essentials 1.4.2 0 rr-essentials 1.4.2 r3.3.1_0 defaultsr-essentials 1.4.2 r3.3.1_0 rr-essentials 1.4.3 r3.3.1_0 defaultsr-essentials 1.4.3 r3.3.1_0 rr-essentials 1.5.0 0 defaultsr-essentials 1.5.0 0 rr-essentials 1.5.1 0 defaultsr-essentials 1.5.1 0 rr-essentials 1.5.2 r3.3.2_0 https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forger-essentials 1.5.2 r3.3.2_0 defaultsr-essentials 1.5.2 r3.3.2_0 rr-essentials 1.5.2 r3.4.1_0 defaultsr-essentials 1.5.2 r3.4.1_0 rr-essentials 1.6.0 r3.4.1_0 defaultsr-essentials 1.6.0 r3.4.1_0 rr-essentials 1.7.0 r342hf65ed6a_0 defaultsr-essentials 1.7.0 r342hf65ed6a_0 rr-essentials 3.4.1 r3.4.1_0 https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forger-essentials 3.4.3 mro343_0 defaultsr-essentials 3.4.3 mro343_0 rr-essentials 3.4.3 r343_0 defaultsr-essentials 3.4.3 r343_0 r---------------------------------------------------------------------------------------conda install -c r -n bsc_bioinfo r-essentials=3.4.3# 需要安装的包太多了，可能会出现网络超时，此时只要重新运行命令，已经下载的包会自动跳过。 利用Conda安装转录组分析工具 当初利用编译安装samtools的时候，坑实在太多，需要安装很多依赖的包。如今利用conda，可以一键安装所有需要的生信软件，省去编译和设置环境变量的麻烦。 1conda install samtools bowtie bowtie2 bwa tophat hisat2 star cufflinks]]></content>
+      <categories>
+        <category>工作环境</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[方差分析]]></title>
+    <url>%2F2019%2F03%2F29%2FANOVA%2F</url>
+    <content type="text"><![CDATA[一些术语组间因子 均衡设计、非均衡设计 单因素【组间】方差分析（one-way ANOVA） F检验 组内因子 单因素组内方差分析 重复测量方差分析 主效应 交互效应 因素方差分析 混合模型方差分析 混淆因素（confounding factor） 干扰变数（nuisance variable） 协方差分析（ANCOVA） 多元方差分析（MANOVA） 多元协方差分析（MANCOVA） 实验设计]]></content>
+      <categories>
+        <category>学点统计</category>
+      </categories>
+      <tags>
+        <tag>统计学</tag>
+        <tag>R</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[陶哲轩对数学学习的一些建议]]></title>
+    <url>%2F2019%2F03%2F29%2Fsome-advice-in-learning-mathematics%2F</url>
+    <content type="text"><![CDATA[博文很长，我仅仅将有用的部分总结一些。快速浏览直接看小标题 数学不只是分数，考试和解题策略 【实际上，生物领域里概念多如牛毛。毕竟生物自古就是一个分类学科，一旦进入细胞层面，离开了命名和概念简直无法说事情。但是实际上我们绝少注意这些概念的内涵和发展。至少在我所在的实验室里，博士是当做实验员来培养的。】 数学不只是严密和证明努力 学习数学的任何领域都需要进行一定量的阅读和写作，而不只是思考。【实际上，我们陷入实验，几乎没有文字输出。而阅读仅限于课题相关的文献。】 如果一个人可以只负责提出宏大的想法，让其他“小人物”来处理细节，那就真是太好了。但相信我，数学领域根本不是那样。过往经验说明：只有那些已经有充足细节和证据周密地撑起宏大想法的论文，才值得让一个人付出时间和精力。如果连想法的发起人都不愿意做这些，那就没人愿意了。【嗯，这一点说的太好了，这说的就是我的老板。】 享受你的工作 如果不享受自己正在做的事情，就很难长期保持活力并取得成功。【生物领域受困于钱的问题，你只能在老板的大背景下做事情，幸好bioinformatics本身完全可以不花钱，这一条对于我的启示是，拒绝一切强加给自己的课题。】 不要基于出名和魅力做职业选择【这一条我觉得说得太对了，所以放出全文】 仅仅因为魅力进入某个领域或者院系不是个好主意。 仅仅因为有名而紧盯着一个领域最有名的问题（或数学家）也不好。 数学里没有那么多名声和魅力，把这些当做你的主要目标来追求也不值得。任何迷人的问题的竞争都十分激烈。只有那些基础扎实的人（尤其是在那些不那么有名的方面有丰富经验的人）才更有可能到达任何地方。【基础决定了学术的高度】 一个未解决的有名的难题常常经年累月得不到解决，如果一个人在开始的时候花功夫去解决那些简单的（也不那么有名的）模式问题，获取技巧，直觉，部分结果，内容和文献，便能够在有机会解决实际中的大问题之前积累富有成效的解决问题的方法，并剔除那些徒劳无功的手法。【研究生应该从小问题开始进入一个领域】 不应该因为获奖或出名而追求数学；长远来看，仅仅冲着为了做出好的数学和为你的领域做出贡献是一个较好的策略，获奖和出名自然水到渠成。 学习、再学习不要畏惧学习领域之外的东西 不要对数学心生恐惧 了解你所使用的工具的局限 【这条是对生信领域的警示，不要盲目相信别人的代码和工具！！！】 学习其他数学家所用的工具 【不要为了节省学习成本就放弃对数据分析流程的更新。】 默默问自己，然后回答 当你学习数学时，不管是看书还是听课，通常你只能看到最终结果——非常完美，高明和优雅。然后数学发现的过程却往往非常混乱，很多尝试很幼稚、没有成果或者了然无趣。 尽管忽略掉这些“失败”的追究的做法是诱人的，但事实上，他们往往对于更深入理解某个主题是必要的，通过不断地排除，我们最终通往成功之路。所以不应该害怕问“笨”问题，要勇于挑战传统智慧。对这些问题的答案偶尔能得出令人惊讶的结论，但更多时候是告诉你为什么传统智慧起先在那，而这是很值得知道的。【试错是生物领域的常态。】 质疑自己的工作 如果你意外地发现自己几乎不费吹灰之力地解决了一个问题，也不太明白为什么，你应该带着怀疑的眼光重新审视你的解决方案。 详细译文在这里 陶哲轩的博客]]></content>
+      <categories>
+        <category>一些想法</category>
+      </categories>
+      <tags>
+        <tag>漫漫科研路</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hexo+Github博客运维]]></title>
     <url>%2F2017%2F09%2F04%2Fhexo-Github%E5%8D%9A%E5%AE%A2%E8%BF%90%E7%BB%B4%2F</url>
     <content type="text"><![CDATA[新建博客1hexo new title &ensp;&ensp;hexo会生成 ./source/_posts/demo.md&ensp;&ensp;打开该文件，我们会发现hexo为我们自动生成了文章的标题和创建时间，另外可以自己添加标签和分类 12345---title: demodate: 2017-08-29 21:40:27tags:--- &ensp;&ensp;其实在./scaffold下，我们可以修改模板文件，hexo可以自动根据模板生成文章的题头。&ensp;&ensp;打开./scaffold/post.md文件，显示如下12345---title: &#123;&#123; title &#125;&#125;date: &#123;&#123; date &#125;&#125;tags:--- &ensp;&ensp;我们将它修改为1234567---title: &#123;&#123; title &#125;&#125;date: &#123;&#123; date &#125;&#125;tags:categories:description:--- &ensp;&ensp;这个时候我们再新建一个文章1hexo new demo2 &ensp;&ensp;可以看到此时./sourse/_post/demo2.md内容如下：1234567---title: demo2date: 2017-08-29 21:53:06tags:categories:description:--- &ensp;&ensp;我们就可以手动在此添加 标签 和 分类 了。具体如何添加标签和分类，参考Next官方文档 添加【分类】页面 添加【标签】页面 管理我的博客多台PC上同步管理12345678git pull #同步更新 hexo new post &quot;新建文章&quot; #简写形式 hexo n &quot;新建文章&quot; hexo clean #清除旧的public文件夹 hexo generate #生成静态文件 简写形式 hexo g hexo deploy #发布到github上 简写形式 hexo d git add . #添加更改文件到缓存区 git commit -m &quot;更新说明&quot; #提交到本地仓库 git push -u origin master #推送到远程仓库进行备份 &ensp;&ensp;每次都这样手动来部署静态博客会感觉非常麻烦，参考Hexo的版本控制和持续集成一文，我实现了对我的博客的自动部署。&ensp;&ensp;至此hexo d -g这个命令已经无需在本地运行了。 如何删除文章并同步&ensp;&ensp;Q：在使用的过程中，我发现虽然上述操作在添加文章时非常方便，但是一旦需要删除一篇文章，从一台PC上push到GitHub后，在另一PCgit pull的时候会产生冲突。如何解决这一问题呢？&ensp;&ensp;A：没有什么好的办法，利用git diff命令找到冲突的原因后在本地删除之，然后再进行git pull 如何从Github上删除一个文件/文件夹，而不影响本地文件&ensp;&ensp;首先将该文件/文件夹加入.gitignore，然后执行以下命令，将其从暂存区域中删除。（不影响本地文件） git rm -r --cached some-directory &ensp;&ensp;然后执行以下命令提交到本地的Git仓库中 git commit -m &quot;Remove the now ignored directory some-directory&quot; &ensp;&ensp;最后push到Github上的仓库中。 git push origin master 其它功能的探索为我的Hexo添加注脚功能&ensp;&ensp;参见hexo-footnotes，注意注脚只能用数字添加，此插件不能识别字母。 利用Hexo画流程图和序列图&ensp;&ensp;3.3.8版本的hexo其实是支持流程图和序列图的，但是其代码块的标记分别是flowchart和sequence，和cmd markdown的语法有一些不同。&ensp;&ensp;除此以外，有两个插件可供使用： hexo-filter-flowchart hexo-filter-sequence]]></content>
